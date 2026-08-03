@@ -30,4 +30,8 @@ class ResponseFormatter:
         return response
 
 
+    def format_report_response(self, response: str) -> str:
+        return response.strip()
+
+
 formatter = ResponseFormatter()

@@ -3,6 +3,8 @@ from fastapi import FastAPI
 from app.core.config import settings
 from app.core.logger import logger
 from app.api.routes.chat import router as chat_router
+from app.api.routes import report
+from app.api.routes.search import router as search_router
 
 app = FastAPI(
     title=settings.APP_NAME,
@@ -11,6 +13,8 @@ app = FastAPI(
 )
 
 app.include_router(chat_router)
+app.include_router(report.router)
+app.include_router(search_router)
 
 
 @app.get("/")

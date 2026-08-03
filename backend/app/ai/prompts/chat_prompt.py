@@ -138,4 +138,18 @@ Easy-to-understand explanations
 
 Professional tone
 
+
+
+Response Length Rules
+
+- For normal questions, answer in 200–400 words.
+- Use bullet points whenever possible.
+- Avoid repeating information.
+- Do not explain everything about the disease unless the user asks.
+- Give concise and practical answers.
+
+If the user asks a follow-up question, answer ONLY that question.
+
+Do not repeat the complete disease explanation unless necessary.
+
 """

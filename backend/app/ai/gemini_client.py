@@ -10,6 +10,7 @@ from google.genai.errors import ClientError
 
 from app.core.config import settings
 from app.core.logger import logger
+import imghdr
 
 
 class GeminiClient:
@@ -53,6 +54,44 @@ class GeminiClient:
             logger.exception(e)
 
             raise Exception("Unexpected AI error.")
+
+    def generate_vision_response(self, prompt: str, image_bytes: bytes) -> str:
+        """
+        Generate response from Gemini Vision.
+        """
+        image_type = imghdr.what(None, image_bytes)
+
+        mime = {
+            "png": "image/png",
+            "jpeg": "image/jpeg",
+            "jpg": "image/jpeg",
+            "webp": "image/webp",
+        }.get(image_type, "image/jpeg")
+
+        try:
+            response = self.client.models.generate_content(
+                model=self.model,
+                contents=[
+                    {
+                        "role": "user",
+                        "parts": [
+                            {"text": prompt},
+                            {
+                                "inline_data": {
+                                    "mime_type": mime,
+                                    "data": image_bytes,
+                                }
+                            },
+                        ],
+                    }
+                ],
+            )
+
+            return response.text
+
+        except Exception as e:
+            logger.error(f"Vision API Error: {e}")
+            raise
 
 
 gemini_client = GeminiClient()
