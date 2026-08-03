@@ -59,10 +59,10 @@ class ChatService:
 
             if safety_manager.is_high_risk(user_message):
                 prompt += """
-        This may be a medical emergency.
-        Strongly advise the user to seek immediate emergency medical care.
-        Do not diagnose with certainty.
-        """
+                This may be a medical emergency.
+                Strongly advise the user to seek immediate emergency medical care.
+                Do not diagnose with certainty.
+                """
 
             response = self.gemini_client.generate_response(prompt)
 
@@ -77,11 +77,12 @@ class ChatService:
 
         if safety_manager.is_high_risk(user_message):
             prompt += """
+            This may be a medical emergency.
+            Strongly advise the user to seek immediate emergency medical care.
+            Do not diagnose with certainty.
+            """
 
-        This may be a medical emergency.
-        Strongly advise the user to seek immediate emergency medical care.
-        Do not diagnose with certainty.
-        """
+        
 
         
         formatted_response = formatter.format_chat_response(response)
