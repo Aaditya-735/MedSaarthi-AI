@@ -12,6 +12,8 @@ from app.ai.formatter import formatter
 from app.ai.safety import safety_manager
 from app.ai.conversation import conversation_manager
 from app.services.followup_service import FollowupService
+from app.ai.profile import profile_manager
+from app.ai.report_memory import report_memory
 
 
 class ChatService:
@@ -36,25 +38,34 @@ class ChatService:
             user_message
         )
 
+        profile_manager.update(
+            session_id,
+            user_message
+        )
+
         history = conversation_manager.get_context(session_id)
-        
+        profile = profile_manager.get_profile(session_id)
+        last_report = report_memory.get(session_id)
+
         # First user message
         if history.count("User:") <= 1:
         
             prompt = self.prompt_manager.build_chat_prompt(
                 user_message=user_message,
-                conversation_history=history
+                conversation_history=history,
+                user_profile=profile,
+                last_report=last_report
             )
-        
+
             if safety_manager.is_high_risk(user_message):
                 prompt += """
         This may be a medical emergency.
         Strongly advise the user to seek immediate emergency medical care.
         Do not diagnose with certainty.
         """
-        
+
             response = self.gemini_client.generate_response(prompt)
-        
+
         # Follow-up message
         else:
             response = self.followup_service.generate_followup(

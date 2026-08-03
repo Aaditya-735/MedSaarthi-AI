@@ -24,7 +24,9 @@ class PromptManager:
     def build_chat_prompt(
         self,
         user_message: str,
-        conversation_history: str = ""
+        conversation_history: str = "",
+        user_profile: str = "",
+        last_report=""
     ) -> str:
         """
         Build prompt for normal health conversation.
@@ -32,7 +34,10 @@ class PromptManager:
 
         return CHAT_PROMPT_TEMPLATE.format(
             conversation_history=conversation_history,
-            user_message=user_message
+             user_profile=user_profile,
+             last_report=last_report,
+             user_message=user_message,
+             
         )
 
     def build_report_prompt(self, report_text: str):

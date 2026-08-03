@@ -12,6 +12,18 @@ CHAT_PROMPT_TEMPLATE = BASE_SYSTEM_PROMPT + """
 Previous Conversation:
 {conversation_history}
 
+=========================================
+USER PROFILE
+=========================================
+
+{user_profile}
+
+=========================================
+LAST MEDICAL REPORT
+=========================================
+
+{last_report}
+
 Current User Question:
 {user_message}
 
@@ -151,5 +163,14 @@ Response Length Rules
 If the user asks a follow-up question, answer ONLY that question.
 
 Do not repeat the complete disease explanation unless necessary.
+
+RESPONSE STYLE
+
+- Keep answers between 150 and 300 words unless the user explicitly asks for detailed information.
+- Prefer bullet points.
+- Do not repeat previously explained medical information.
+- Focus only on answering the current question.
+- If the user's profile contains diseases, age, medications, allergies, or previous reports, personalize the answer using them.
+
 
 """

@@ -5,6 +5,7 @@ from app.services.vision_service import VisionService
 from app.ai.prompt_manager import PromptManager
 from app.ai.gemini_client import GeminiClient
 from app.ai.formatter import formatter
+from app.ai.report_memory import report_memory
 
 
 class ReportService:
@@ -15,7 +16,7 @@ class ReportService:
         self.prompt_manager = PromptManager()
         self.gemini_client = GeminiClient()
 
-    async def analyze(self, file: UploadFile):
+    async def analyze(self,session_id: str, file: UploadFile):
 
         if not file.filename:
             raise HTTPException(
@@ -57,6 +58,10 @@ class ReportService:
         )
         
         analysis = self.gemini_client.generate_response(prompt)
+        report_memory.save(
+            session_id,
+            analysis
+        )
         
         analysis = formatter.format_report_response(analysis)
         
