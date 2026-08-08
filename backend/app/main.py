@@ -5,11 +5,22 @@ from app.core.logger import logger
 from app.api.routes.chat import router as chat_router
 from app.api.routes import report
 from app.api.routes.search import router as search_router
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
     title=settings.APP_NAME,
     version=settings.APP_VERSION,
     debug=settings.DEBUG,
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 app.include_router(chat_router)
