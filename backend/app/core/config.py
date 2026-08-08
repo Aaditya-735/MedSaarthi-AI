@@ -33,7 +33,7 @@ class Settings(BaseSettings):
     # Google Gemini
     # =========================
     GOOGLE_API_KEY: str
-    GEMINI_MODEL: str = Field(default="gemini-2.5-flash")
+    GEMINI_MODEL: str = Field(default="gemini-3.6-flash")
 
     # =========================
     # API Server
@@ -45,7 +45,7 @@ class Settings(BaseSettings):
     # CORS
     # =========================
     CORS_ORIGINS: list[str] = [
-        "http://localhost:3000",
+        "https://medsaarthi-ai-frontend.onrender.com",
         "http://127.0.0.1:3000",
     ]
 
