@@ -46,3 +46,15 @@ export const searchMedical = async (query) => {
 
     return response.data;
 };
+
+export const checkEmergency = async (symptoms) => {
+
+    const response = await API.post(
+        "/emergency",
+        {
+            symptoms: symptoms
+        }
+    );
+
+    return response.data;
+};

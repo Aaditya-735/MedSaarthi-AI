@@ -40,9 +40,15 @@ function Navbar() {
                 }}
             >
                 <Link to="/">Home</Link>
+
                 <Link to="/report">Report</Link>
+
                 <Link to="/chat">AI Chat</Link>
+
                 <Link to="/search">Search</Link>
+
+                <Link to="/emergency">Emergency</Link>
+
                 <Link to="/about">About</Link>
             </div>
         </nav>

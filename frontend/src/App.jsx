@@ -8,6 +8,7 @@ import Report from "./pages/Report";
 import Chat from "./pages/Chat";
 import Search from "./pages/Search";
 import About from "./pages/About";
+import Emergency from "./pages/Emergency";
 
 function App() {
     return (
@@ -26,6 +27,8 @@ function App() {
                 <Route path="/search" element={<Search />} />
 
                 <Route path="/about" element={<About />} />
+                
+                <Route path="/emergency" element={<Emergency />} />
 
             </Routes>
 
