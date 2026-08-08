@@ -23,3 +23,26 @@ export const analyzeReport = async (file) => {
 
     return response.data;
 };
+
+
+
+export const sendChatMessage = async (message) => {
+    const response = await API.post("/chat", {
+        session_id: "frontend-session",
+        message: message,
+    });
+
+    return response.data;
+};
+
+export const searchMedical = async (query) => {
+
+    const response = await API.post(
+        "/search",
+        {
+            query: query
+        }
+    );
+
+    return response.data;
+};
