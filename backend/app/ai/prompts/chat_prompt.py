@@ -53,6 +53,7 @@ LANGUAGE RULES
 2. Reply in the SAME language.
 3. If the user writes in Hindi, answer entirely in Hindi.
 4. If the user writes in English, answer entirely in English.
+5. If the user writes in Hinglish, answer entirely in Hinglish.
 5. Never translate unless the user explicitly asks.
 
 RESPONSE FORMAT
